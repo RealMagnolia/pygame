@@ -1,45 +1,43 @@
 import pygame
-from datetime import datetime
-
-RES = WIDTH, HEIGHT = 800, 800
+import datetime
 
 pygame.init()
-surface = pygame.display.set_mode(RES)
+
+screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 1
 done = False
 myClock = pygame.image.load('clock.png')
 myClock = pygame.transform.scale(myClock, (600, 600))
 
-minutes = pygame.image.load('minhand.png')
-minutes = pygame.transform.scale(minutes, (550, 550))
 
-seconds = pygame.image.load('sechand.png')
-seconds = pygame.transform.scale(seconds, (550, 550))
+
+minute_arrow = pygame.image.load('min_hand.png') 
+minute_arrow = pygame.transform.scale(minute_arrow, (600, 600))
+second_arrow = pygame.image.load('sec_hand.png')
+second_arrow = pygame.transform.scale(second_arrow, (600, 600))
 
 
 while not done:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        done = True
+        my_time = datetime.datetime.now()
+        minuteINT = my_time.minute
+        secondINT = my_time.second
 
-    myTime = datetime.now()
-    curMins = myTime.minute
-    curSec = myTime.second
+        angleMINUTE = minuteINT * 6 * -1
+        angleSECOND = secondINT * 6 * -1
 
-    angleM = curMins * 6 * -1
-    angleS = curSec * 6 * -1
+        minute = pygame.transform.rotate(minute_arrow, angleMINUTE)
+        second = pygame.transform.rotate(second_arrow, angleSECOND)
+        
 
-    Minute = pygame.transform.rotate(minutes, angleM)
-    Second = pygame.transform.rotate(seconds, angleS)
-
-    surface.fill((255, 255, 255))
-    surface.blit(myClock, (100, 100))
-    surface.blit(Minute, (400 - Minute.get_width() // 2, 400 - Minute.get_height() // 2))
-    surface.blit(Second, (400 - Second.get_width() // 2, 400 - Second.get_height() // 2))
-    
-    pygame.draw.circle(surface, (0, 0, 0), (400, 400), 22)  
-    pygame.display.flip()
-    clock.tick(FPS)
-
+        screen.fill((255, 255, 255))
+        screen.blit(myClock, (100, 100))
+        screen.blit(second, (400 - int(second.get_width() / 2), 400 - int(second.get_height() / 2))) 
+        screen.blit(minute, ((400 - int(minute.get_width() / 2), 400 - int(minute.get_height() / 2))))
+        pygame.draw.circle(screen, (0, 0, 0), (400, 400), 22)
+        pygame.display.flip()
+        clock.tick(FPS)
 pygame.quit()
