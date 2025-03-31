@@ -1,0 +1,17 @@
+{
+    "background": [201, 210, 227], 
+    "white": [255, 255, 255], 
+    "black": [0, 0, 0], 
+    "upper_block": [245, 246, 248], 
+    "l-black": [60, 78, 78],
+    "blue": [67, 150, 249],
+    "dark_blue" : [0,0,204],
+    "in_button" : [226, 242, 253],
+    "in_button_border" : [124, 201, 255],
+    "picked_button" : [194, 229, 252],
+    "picked_button_border" : [137, 196, 255],
+    "bg_size_picker" : [250, 251, 252],
+    "border_tools" : [203, 208, 210],
+    "bg_figure" : [239, 245,255],
+    "l-gray" : [238, 238, 238]
+}
